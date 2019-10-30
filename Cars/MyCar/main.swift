@@ -6,5 +6,11 @@
 //  Copyright © 2019 Ивлев А.Е. All rights reserved.
 //
 
-let console = Console(storage: Storage())
+let storage = Storage()
+
+storage.load()
+
+let console = Console(storage: storage)
 console.run()
+
+storage.save()

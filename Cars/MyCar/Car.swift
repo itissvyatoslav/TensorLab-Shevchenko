@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Car: CustomStringConvertible, Equatable {
+struct Car: CustomStringConvertible, Equatable, Codable {
     private let id: UUID = UUID()
     
     let name: String
@@ -17,10 +17,10 @@ struct Car: CustomStringConvertible, Equatable {
     
     var description: String {
         return """
-               Name \(name)
-               Year \(year)
-               Model \(model)
-               """
+        Name \(name)
+        Year \(year)
+        Model \(model)
+        """
     }
     
     static func ==(lhs: Car, rhs: Car) -> Bool {

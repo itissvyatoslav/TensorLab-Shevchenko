@@ -59,7 +59,26 @@ class Console {
             print(car)
         }
     }
-
+    
+    private func addCarByI() -> Int{
+        print("Write index:")
+        var index = 0
+        while true {
+            guard let indexOfStr = readLine(), let newIndex = Int(indexOfStr)  else {
+                print("Please write correct index")
+                continue
+            }
+            index = newIndex
+            if index > storage.cars.count {
+                print("Please write correct index:")
+            } else {
+                break
+            }
+        }
+        return index
+    }
+    
+    
     private func addCar() {
         print("Write car name: ", separator: "", terminator: "")
         guard let carName = readLine() else {
@@ -82,8 +101,29 @@ class Console {
         guard let carModel = readLine() else {
             fatalError("Ooops...")
         }
-
-        storage.addCar(Car(name: carName, year: carYear, model: carModel))
+        
+        print("Do you want to place at certain index?")
+        while true{
+            guard let command = readLine() else {
+                fatalError("Ooops...")
+            }
+            while true{
+                switch command {
+                case "yes":
+                    let index = addCarByI()
+                    storage.addCarByI(car: Car(name: carName, year: carYear, model: carModel), index: index)
+                    break
+                case "no":
+                    storage.addCar(Car(name: carName, year: carYear, model: carModel))
+                    break
+                default:
+                    print("Write the correct answer")
+                }
+                break
+            }
+            break
+        }
+        
     }
     
     private func removeCarByI(){
@@ -134,11 +174,7 @@ class Console {
             
         }
     }
-        
-        // TODO: надо сделать удаление машины по индексу
-        // TODO: разделить на две команду удалить
-        // TODO: надо сделать удаление машин по совпадению строка может быть в имени годе модели (contains)
-        
-
-
+    
+    
+    
 }
